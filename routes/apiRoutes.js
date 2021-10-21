@@ -1,89 +1,56 @@
 const router = require("express").Router();
-// const Transaction = require("../models/transaction.js");
+const db = require("../models");
 
 // needed? 
 const path = require("path");
 
+router.get("/", (req, res) =>
+res.sendFile(path.join(__dirname, '../public/index.html'))
+);
+
+router.get('/stats', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/stats.html'))
+);
+
+router.get('/exercise', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/exercise.html'))
+);
 
 
-router.get("/exercise", (req, res) => {
-  res.sendFile(path.join(_dirname, '../public/exercise.html'))
+// get a workout
+router.get("/api/workouts", (req, res) => {
+db.Workout.find({})
+.sort ({day: 1 })
+.then (dbWorkout => {
+  res.json(dbWorkout);
 })
-  .catch(err => {
-    res.json(err);
+.catch(err => {
+  res.json(err)
+});
+})
 
-    // or this ??----------------------------------
 
-    // .catch(err => {
-    //       res.status(400).json(err);
-    //     });
-  });
+
 
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
-})
-.catch(err => {
-  res.json(err);
 });
-;
-
-router.get("/stats", (req, res) => {
-  res.sendFile(path.join(_dirname, '../public/stats.html'))
-})
-  .catch(err => {
-    res.json(err);
-  });
 
 
+
+// Create new workout?? 
 router.post("/api/workouts", (req, res) => {
   db.Workout.create(req.body)
     .then(dbWorkout => {
-      res.json(dbWorkout);
+      res.json(dbWorkout)
     })
-})
-  .catch(err => {
-    res.json(err);
-  });
+    .catch(err => {
+      res.json(err);
+    })
+});
 
 
-
-
-
-
-// edit this section -------------
-
-// router.post("/api/transaction", ({ body }, res) => {
-//   Transaction.create(body)
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
-
-// router.post("/api/transaction/bulk", ({ body }, res) => {
-//   Transaction.insertMany(body)
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
-
-// router.get("/api/transaction", (req, res) => {
-//   Transaction.find({})
-//     .sort({ date: -1 })
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
-
-// add a NEW exercise
+// add a NEW exercise ???
 
 router.put("/api/workouts/:id", (req, res) => {
   workout.findOneAndUpdate(
@@ -104,21 +71,5 @@ router.put("/api/workouts/:id", (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;
-
-
-//  new stuff 
-
 

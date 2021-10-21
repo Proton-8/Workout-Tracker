@@ -2,7 +2,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // new
-const Workout = mongoose.model("workout", workoutSchema);
 
 // new ==================  to be reviewed ??? 
 
@@ -44,6 +43,8 @@ const workoutSchema = new Schema({
     default: Date.now(),
   },
 });
+
+const Workout = mongoose.model("workout", workoutSchema);
 
 
 
