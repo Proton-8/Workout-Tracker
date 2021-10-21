@@ -1,12 +1,13 @@
 // standard cut and paste for mongoose
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+// new
+const Workout = mongoose.model("workout", workoutSchema);
 
 // new ==================  to be reviewed ??? 
 
 const workoutSchema = new Schema({
-  exercise: [
+  exercises: [
     {
        name: {
         type: String,
@@ -40,10 +41,10 @@ const workoutSchema = new Schema({
   ],
   day: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
 });
 
-const Workout = mongoose.model("workout", workoutSchema);
+
 
 module.exports = Workout;
