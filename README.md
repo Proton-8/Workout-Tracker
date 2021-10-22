@@ -6,7 +6,7 @@
 
 When the user loads the page, they should be given the option to create a new workout or continue with their last workout.
 
-The user is able to:
+The user should be able to:
 
   * Add exercises to the most recent workout plan.
 
@@ -17,31 +17,7 @@ The user is able to:
   * View the total duration of each workout from the past seven workouts on the `stats` page.
 
 
-### Technologies Used
-<br>
+  
+  * [Set Up MongoDB Atlas](../04-Important/MongoAtlas-Setup.md)
 
-### Applications Used
-
-* Main ones:
-
-    * Uses the [MongoDB package](https://www.mongodb.com/.) to connect to a live database.
-
-    * Uses the [Heroku package](https://dashboard.heroku.com/apps) to host. 
-
-<br>
-<h2>Screenshots of App </h2>
-</p>
-<img src="public\Workout-Start.jpg" alt=" Start screenshot">
-<p>
-
-</p>
-<img src="public\Workout-Dashboard.jpg" alt=" Dashboard screenshot">
-<p>
-
-<br>
-
-### My Contact Info:
-
-Email: RonaShutter@gmail.com<br>
-GitHub: https://github.com/Proton-8
-
+  * [Deploy with Heroku and MongoDB Atlas](../04-Important/MongoAtlas-Deploy.md)

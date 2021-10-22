@@ -1,14 +1,17 @@
 const router = require("express").Router();
 const db = require("../models");
+
 const path = require("path");
 
-
+// keep this here ???------
 router.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "../public/index.html"))
 );
+
 router.get("/stats", (req, res) =>
   res.sendFile(path.join(__dirname, "../public/stats.html"))
 );
+
 router.get("/exercise", (req, res) =>
   res.sendFile(path.join(__dirname, "../public/exercise.html"))
 );
@@ -28,32 +31,15 @@ router
       });
   })
   .get((req, res) => {
-    db.Workout.aggregate([{
-      $addFields: {
-          totalDuration: { $sum: "$exercises.duration" }
-      }
-  }])
-  .then(dbWorkout => {
-      res.json(dbWorkout);
-  })
-  .catch(err => {
-      res.json(err);
+    db.Workout.find({})
+      .sort({ day: 1 })
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
   });
-});
-
-// old code=================
-
-  //   db.Workout.find({})
-  //     .sort({ day: 1 })
-  //     .then((dbWorkout) => {
-  //       res.json(dbWorkout);
-  //     })
-  //     .catch((err) => {
-  //       res.json(err);
-  //     });
-  // });
-
-
 
 // get last 7 days of workouts
 router.get("/api/workouts/range", (req, res) => {
@@ -79,7 +65,7 @@ router.get("/api/workouts/range", (req, res) => {
 // add a NEW exercise ???
 
 router.put("/api/workouts/:id", (req, res) => {
-  db.Workout
+  workout
     .findOneAndUpdate(
       { _id: req.params.id },
       {
