@@ -10,21 +10,20 @@ const mongoose = require("mongoose");
 // default port information - set port or get default of 3001
 const PORT = process.env.PORT || 3000;
 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Workout", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
-
-
+// the new route
 app.use(require("./routes/apiRoutes"));
 
-// the new route
-// app.use(require("./routes/"));
 
 app.listen(PORT, () => {
   console.log(`App running on: http://localhost:${PORT}`);

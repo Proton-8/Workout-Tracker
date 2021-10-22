@@ -1,17 +1,15 @@
+// cut and paste section
 const router = require("express").Router();
 const db = require("../models");
-
 const path = require("path");
 
-// keep this here ???------
+// "static routes" ------
 router.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "../public/index.html"))
 );
-
 router.get("/stats", (req, res) =>
   res.sendFile(path.join(__dirname, "../public/stats.html"))
 );
-
 router.get("/exercise", (req, res) =>
   res.sendFile(path.join(__dirname, "../public/exercise.html"))
 );
