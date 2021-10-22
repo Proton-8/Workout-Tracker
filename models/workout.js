@@ -1,7 +1,6 @@
 // standard cut and paste for mongoose
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// new
 
 // new ==================  to be reviewed ??? 
 
@@ -45,7 +44,5 @@ const workoutSchema = new Schema({
 });
 
 const Workout = mongoose.model("workout", workoutSchema);
-
-
 
 module.exports = Workout;

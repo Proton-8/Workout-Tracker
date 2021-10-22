@@ -29,8 +29,11 @@ router
       });
   })
   .get((req, res) => {
-    db.Workout.find({})
-      .sort({ day: 1 })
+    db.Workout.aggregate([{
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" }
+      }
+    }])
       .then((dbWorkout) => {
         res.json(dbWorkout);
       })
@@ -42,19 +45,19 @@ router
 // get last 7 days of workouts
 router.get("/api/workouts/range", (req, res) => {
   db.Workout.aggregate([{
-              $addFields: {
-                  totalDuration: { $sum: "$exercises.duration" }
-              }
-          },
-          { $sort: { day: -1 } },
-          { $limit: 7 }
-      ])
-      .then(dbWorkout => {
-          res.json(dbWorkout);
-      })
-      .catch(err => {
-          res.json(err);
-      });
+    $addFields: {
+      totalDuration: { $sum: "$exercises.duration" }
+    }
+  },
+  { $sort: { day: -1 } },
+  { $limit: 7 }
+  ])
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 
@@ -63,19 +66,17 @@ router.get("/api/workouts/range", (req, res) => {
 // add a NEW exercise ???
 
 router.put("/api/workouts/:id", (req, res) => {
-  workout
+  db.Workout
     .findOneAndUpdate(
       { _id: req.params.id },
       {
-        $inc: { totalDuration: req.body.duration },
-        $push: { exercises: req.body },
-      },
-      { new: true }
+        $push: { exercises: req.body }
+      }  
     )
-    .then((dbWorkout) => {
+    .then(dbWorkout => {
       res.json(dbWorkout);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });

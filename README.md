@@ -1,6 +1,14 @@
 # Workout-Tracker - Unit 18 Nosql
 
 
+## Description
+This app will...
+
+
+## Usage
+
+The Home Page
+  
 
 ## Acceptance Criteria
 
@@ -21,3 +29,36 @@ The user should be able to:
   * [Set Up MongoDB Atlas](../04-Important/MongoAtlas-Setup.md)
 
   * [Deploy with Heroku and MongoDB Atlas](../04-Important/MongoAtlas-Deploy.md)
+
+
+## Deployed Website
+[Workout-Tracker](https://polar-lake-80445.herokuapp.com/)
+
+
+## Technologies Used
+
+* HTML
+* Heroku
+* CSS
+* MongoDB
+*
+<br>
+
+<p>
+<h2>  Example screen shots: </h2>
+
+
+<img src="public\Workout-Start.jpg" alt="Dashboard demo">
+
+
+<img src="public\Workout-Dashboard.jpg" alt="Dashboard demo">
+
+
+</p>
+
+
+
+## Contact info
+- Ron Shutter | [Github Profile](https://github.com/Proton-8)
+
+
