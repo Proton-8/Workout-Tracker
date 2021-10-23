@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 // need this???
 // const logger = require("morgan");
@@ -7,7 +8,8 @@ const mongoose = require("mongoose");
 // default port information - set port or get default of 3001
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", 
+mongoose.connect(process.env.MONGODB_URI, 
+  // || "mongodb://localhost/workout", 
  {
   useNewUrlParser: true,
   useFindAndModify: false,
