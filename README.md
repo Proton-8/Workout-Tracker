@@ -48,10 +48,10 @@ The user should be able to:
  ## Example screen shots:
 <br>
 <p>
-<img src="Workout-Start.jpg" alt="Start Page demo">
+<img src="Workout-Start.JPG" alt="Start Page demo">
 
 
-<img src="Workout-Dashboard.jpg" alt="Dashboard demo">
+<img src="Workout-Dashboard.JPG" alt="Dashboard demo">
 
 
 </p>
